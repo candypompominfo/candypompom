@@ -11,22 +11,22 @@ const groupData = {
       name_en: "Mashumaro Kokoa",
       color: "赤",
       role: "Red担当",
-      photo: "images/kokoa.jpg"
+      photo: "" // 이미지 나중에 넣으면 돼
     },
     {
       name_jp: "ひよ",
       name_en: "Hiyo",
       color: "白",
       role: "White担当",
-      photo: "images/hiyo.jpg"
+      photo: ""
     }
   ],
 
   sns: [
-    { 
-      label: "Twitter", 
-      handle: "@candypom_info", 
-      url: "https://twitter.com/candypom_info" 
+    {
+      label: "X",
+      handle: "@candypom_info",
+      url: "https://x.com/candypom_info"
     }
   ]
 };
