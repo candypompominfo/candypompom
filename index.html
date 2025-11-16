@@ -166,17 +166,22 @@
 let openedProfileIndex = null;
 
 // 카드 클릭하면 프로필 박스에 내용 넣기 (토글 기능 포함)
+let openedProfileIndex = null;
+
 card.addEventListener("click", () => {
-  // 같은 멤버를 다시 탭하면 닫기
+  // 이미 이 멤버가 열려 있으면 → 닫기
   if (openedProfileIndex === index) {
     memberProfileBox.innerHTML = "メンバーをタップするとプロフィールが表示されます。";
+    memberProfileBox.style.borderLeft = "none";  // 색도 제거
     openedProfileIndex = null;
     return;
   }
 
-  // 새로운 멤버 선택 → 프로필 표시
+  // 새로 이 멤버를 연 경우 → 프로필 + 색 적용
   const text = m.profile || "";
   memberProfileBox.innerHTML = text.replace(/\n/g, "<br>");
+  memberProfileBox.style.borderLeft = `6px solid ${m.color}`;  // ← 이 줄
+
   openedProfileIndex = index;
 });
 
