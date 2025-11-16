@@ -4,28 +4,27 @@ const groupData = {
   description: "ふわふわでキラキラな王道アイドルユニット、candy♡pompom(キャンディ♡ポムポム)！",
 
   members: [
-    {
-      name_jp: "真朱円ココア",
-      name_en: "Mashumaro Kokoa",
-      color: "赤",
-      role: "ストロベリーレッド🍓担当",
-      photo: "https://candypompominfo.github.io/candypompom/images/Mashumaro_Kokoa.jpg",
-      profile: `名前: 真朱円ココア　(ましゅまろ　ここあ)
-ニックネーム: ここあかちゃん
+  {
+    name_jp: "真朱円ココア",
+    name_en: "Mashumaro Kokoa",
+    color: "#ff6b81",          // ← CSS가 이해하는 색 (스트로베리 레드 느낌)
+    role: "赤担当",
+    photo: "https://candypompominfo.github.io/candypompom/images/Mashumaro_Kokoa.jpg",
+    profile: `真朱円ココア　(ましゅまろ　ここあ)
+ニックネーム:　ここあかちゃん
 担当カラー:　ストロベリーレッド　(赤)
 誕生日:　２００３年5月13日
 趣味: ぬいくるみを集めること`
-    },
-    {
-      name_jp: "ひよ",
-      name_en: "Hiyo",
-      color: "白",
-      role: "白担当",
-      photo: "",
-      profile: ``
-    }
-  ],
-
+  },
+  {
+    name_jp: "ひよ",
+    name_en: "Hiyo",
+    color: "#ffffff",          // ← 흰색
+    role: "白担当",
+    photo: "",
+    profile: ``
+  }
+],
   sns: [
     {
       label: "X",
