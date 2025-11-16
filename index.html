@@ -144,11 +144,14 @@
     document.getElementById("groupName").textContent = groupData.name;
     document.getElementById("groupDesc").textContent = groupData.description;
 
-    // 멤버 목록
+    // 멤버 목록 + 클릭 시 프로필 표시
     const memberGrid = document.getElementById("memberGrid");
-    groupData.members.forEach(m => {
+    const memberProfileBox = document.getElementById("memberProfileBox");
+
+    groupData.members.forEach((m, index) => {
       const card = document.createElement("div");
       card.className = "member-card";
+      card.dataset.index = index; // 몇 번째 멤버인지 표시
 
       card.innerHTML = `
         <div class="member-photo">
@@ -158,6 +161,12 @@
         <div class="member-name-en">${m.name_en}</div>
         <div class="member-role">${m.role}</div>
       `;
+
+      // 카드 클릭하면 프로필 박스에 내용 넣기
+      card.addEventListener("click", () => {
+        const text = m.profile || "";
+        memberProfileBox.innerHTML = text.replace(/\n/g, "<br>");
+      });
 
       memberGrid.appendChild(card);
     });
