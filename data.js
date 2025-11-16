@@ -11,7 +11,7 @@ const groupData = {
       name_en: "Mashumaro Kokoa",
       color: "赤",
       role: "Red担当",
-      photo: "images/Mashumaro_Kokoa.jpg"
+      photo: "https://candypompominfo.github.io/candypompom/images/Mashumaro_Kokoa.jpg"
     },
     {
       name_jp: "ひよ",
