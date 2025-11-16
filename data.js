@@ -8,7 +8,7 @@ const groupData = {
       name_jp: "真朱円ココア",
       name_en: "Mashumaro Kokoa",
       color: "赤",
-      role: "赤担当",
+      role: "ストロベリーレッド🍓担当",
       photo: "https://candypompominfo.github.io/candypompom/images/Mashumaro_Kokoa.jpg",
       profile: `真朱円ココア　(ましゅまろ　ここあ)
 担当カラー:　ストロベリーレッド　(赤)
