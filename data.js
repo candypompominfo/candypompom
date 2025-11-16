@@ -10,7 +10,8 @@ const groupData = {
       color: "赤",
       role: "ストロベリーレッド🍓担当",
       photo: "https://candypompominfo.github.io/candypompom/images/Mashumaro_Kokoa.jpg",
-      profile: `真朱円ココア　(ましゅまろ　ここあ)
+      profile: `名前: 真朱円ココア　(ましゅまろ　ここあ)
+ニックネーム: ここあかちゃん
 担当カラー:　ストロベリーレッド　(赤)
 誕生日:　２００３年5月13日
 趣味: ぬいくるみを集めること`
