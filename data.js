@@ -23,7 +23,10 @@ const groupData = {
   ],
 
   sns: [
-    { label: "Twitter", handle: "@candy_pompom", url: "#" },
-    { label: "Instagram", handle: "@candypompom_official", url: "#" }
+    { 
+      label: "Twitter", 
+      handle: "@candypom_info", 
+      url: "https://twitter.com/candypom_info" 
+    }
   ]
 };
