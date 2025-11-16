@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>candy♡pompom - Official Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background: #fff5fb;
+      color: #333;
+    }
+    header {
+      background: #ffb6d9;
+      padding: 16px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    h2 {
+      margin-top: 32px;
+      font-size: 20px;
+      border-left: 6px solid #ff8cc2;
+      padding-left: 10px;
+      color: #ff4fa3;
+    }
+    .desc {
+      font-size: 14px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    /* 멤버 카드 스타일 */
+    .member-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .member-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 12px;
+      text-align: center;
+    }
+    .member-photo {
+      width: 100%;
+      height: 180px;
+      background: #ffe8f5;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #aaa;
+      font-size: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .member-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .member-name-jp {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .member-name-en {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 6px;
+    }
+    .member-role {
+      font-size: 13px;
+      color: #ff60a5;
+      font-weight: 600;
+    }
+
+    /* SNS */
+    .sns-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sns-chip {
+      display: inline-flex;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: #ffd8ec;
+      text-decoration: none;
+      color: #c12f7b;
+      font-size: 14px;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="groupName">loading...</header>
+
+  <div class="container">
+    <h2>ABOUT</h2>
+    <p class="desc"><span id="groupDesc"></span></p>
+
+    <h2>MEMBERS</h2>
+    <div class="member-grid" id="memberGrid"></div>
+
+    <h2>SNS</h2>
+    <div class="sns-list" id="snsList"></div>
+  </div>
+
+  <!-- 데이터 파일 -->
+  <script src="data.js"></script>
+
+  <!-- 페이지 자동 렌더 스크립트 -->
+  <script>
+    // 그룹명/소개
+    document.getElementById("groupName").textContent = groupData.name;
+    document.getElementById("groupDesc").textContent = groupData.description;
+
+    // 멤버 목록
+    const memberGrid = document.getElementById("memberGrid");
+    groupData.members.forEach(m => {
+      const card = document.createElement("div");
+      card.className = "member-card";
+
+      card.innerHTML = `
+        <div class="member-photo">
+          ${m.photo ? `<img src="${m.photo}" alt="${m.name_jp}">` : "No image"}
+        </div>
+        <div class="member-name-jp">${m.name_jp}</div>
+        <div class="member-name-en">${m.name_en}</div>
+        <div class="member-role">${m.role}</div>
+      `;
+
+      memberGrid.appendChild(card);
+    });
+
+    // SNS 목록
+    const snsList = document.getElementById("snsList");
+    groupData.sns.forEach(s => {
+      const item = document.createElement("a");
+      item.className = "sns-chip";
+      item.href = s.url;
+      item.textContent = `${s.label}   ${s.handle}`;
+      snsList.appendChild(item);
+    });
+  </script>
+</body>
+</html>
