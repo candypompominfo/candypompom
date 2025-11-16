@@ -162,11 +162,23 @@
         <div class="member-role">${m.role}</div>
       `;
 
-      // 카드 클릭하면 프로필 박스에 내용 넣기
-      card.addEventListener("click", () => {
-        const text = m.profile || "";
-        memberProfileBox.innerHTML = text.replace(/\n/g, "<br>");
-      });
+      // 현재 열려 있는 멤버 인덱스 추적용
+let openedProfileIndex = null;
+
+// 카드 클릭하면 프로필 박스에 내용 넣기 (토글 기능 포함)
+card.addEventListener("click", () => {
+  // 같은 멤버를 다시 탭하면 닫기
+  if (openedProfileIndex === index) {
+    memberProfileBox.innerHTML = "メンバーをタップするとプロフィールが表示されます。";
+    openedProfileIndex = null;
+    return;
+  }
+
+  // 새로운 멤버 선택 → 프로필 표시
+  const text = m.profile || "";
+  memberProfileBox.innerHTML = text.replace(/\n/g, "<br>");
+  openedProfileIndex = index;
+});
 
       memberGrid.appendChild(card);
     });
