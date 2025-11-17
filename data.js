@@ -30,7 +30,7 @@ const groupData = {
     name_en: "Murasaki Raira",
     color: "#C9A7F3",          //연보라
     role: "ライラックパープル担当",
-    photo: "",
+    photo: "https://candypompominfo.github.io/candypompom/images/Murasaki_Raira.jpg",
     profile: `村崎来羅　(むらさき　らいら)
 ニックネーム:　ららちゃん
 担当カラー:　ライラックパープル 🪻
