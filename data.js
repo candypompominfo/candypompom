@@ -23,7 +23,7 @@ const groupData = {
     color: "#ffffff",          // ← 흰색
     role: "白担当",
     photo: "",
-    profile: ``
+    profile: `test`
   },
   {
     name_jp: "村崎来羅",
