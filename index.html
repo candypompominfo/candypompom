@@ -96,15 +96,16 @@
       font-weight: 600;
     }
 
-    /* 프로필 박스 */
-    .profile-box {
-      margin-top: 16px;
-      padding: 12px;
-      border-radius: 12px;
+    /* 카드 안에 들어가는 프로필 박스 */
+    .member-profile {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
       background: #ffe8f5;
-      font-size: 13px;
-      white-space: normal;
+      font-size: 12px;
       line-height: 1.6;
+      text-align: left;
+      display: none; /* 기본은 숨김 */
     }
 
     /* SNS */
@@ -139,12 +140,6 @@
     <h2>MEMBERS</h2>
     <div class="member-grid" id="memberGrid"></div>
 
-    <!-- 프로필 박스 -->
-    <div class="profile-box" id="memberProfileBox">
-      メンバーをタップするとプロフィールが表示されます。
-    </div>
-
-    <!-- SNS 영역 (1개만 유지) -->
     <h2>SNS</h2>
     <div class="sns-list" id="snsList"></div>
 
@@ -160,12 +155,12 @@
     document.getElementById("groupDesc").textContent = groupData.description;
 
     const memberGrid = document.getElementById("memberGrid");
-    const memberProfileBox = document.getElementById("memberProfileBox");
 
-    let openedProfileIndex = null; // ★ 토글 상태 저장
+    // 한 번에 하나만 열리게 하고 싶으면 이거 사용
+    let openedProfileDiv = null;
 
     // 멤버 카드 생성
-    groupData.members.forEach((m, index) => {
+    groupData.members.forEach((m) => {
 
       const card = document.createElement("div");
       card.className = "member-card";
@@ -177,29 +172,37 @@
         <div class="member-name-jp">${m.name_jp}</div>
         <div class="member-name-en">${m.name_en}</div>
         <div class="member-role">${m.role}</div>
+        <div class="member-profile"></div>
       `;
 
-      // 클릭 → 프로필 표시/숨기기
-      card.addEventListener("click", () => {
+      const profileDiv = card.querySelector(".member-profile");
+      profileDiv.innerHTML = (m.profile || "").replace(/\n/g, "<br>");
+      profileDiv.style.borderLeft = `4px solid ${m.color || "#ff8cc2"}`;
 
-        if (openedProfileIndex === index) {
-          memberProfileBox.innerHTML = "メンバーをタップするとプロフィールが表示されます。";
-          memberProfileBox.style.borderLeft = "none";
-          openedProfileIndex = null;
-          return;
+      card.addEventListener("click", () => {
+        // 빈 프로필이면 아무것도 안 함
+        if (!m.profile) return;
+
+        // 이미 열려 있던 프로필 닫기
+        if (openedProfileDiv && openedProfileDiv !== profileDiv) {
+          openedProfileDiv.style.display = "none";
         }
 
-        memberProfileBox.innerHTML = (m.profile || "").replace(/\n/g, "<br>");
-        memberProfileBox.style.borderLeft = `6px solid ${m.color}`;
-        openedProfileIndex = index;
+        // 이 카드 프로필 토글
+        if (profileDiv.style.display === "none" || profileDiv.style.display === "") {
+          profileDiv.style.display = "block";
+          openedProfileDiv = profileDiv;
+        } else {
+          profileDiv.style.display = "none";
+          openedProfileDiv = null;
+        }
       });
 
       memberGrid.appendChild(card);
     });
 
-    // SNS 목록 생성
+    // SNS 목록
     const snsList = document.getElementById("snsList");
-
     groupData.sns.forEach(s => {
       const item = document.createElement("a");
       item.className = "sns-chip";
