@@ -43,38 +43,41 @@
     }
 
     /* お知らせ */
-    .news-list {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+.news-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-    .news-item {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 14px 16px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      font-size: 13px;
-    }
+.news-item {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  font-size: 13px;
+  cursor: pointer;              /* ← 클릭 가능한 느낌 */
+}
 
-    .news-title {
-      font-weight: 700;
-      color: #ff4fa3;
-      font-size: 14px;
-    }
+.news-title {
+  font-weight: 700;
+  color: #ff4fa3;
+  font-size: 14px;
+}
 
-    .news-meta {
-      margin-top: 2px;
-      font-size: 12px;
-      color: #999;
-    }
+.news-meta {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #999;
+}
 
-    .news-body {
-      margin-top: 8px;
-      line-height: 1.7;
-      white-space: pre-wrap; /* 줄바꿈 그대로 표시 */
-    }
+/* 본문은 기본적으로 안 보이게 */
+.news-body {
+  margin-top: 8px;
+  line-height: 1.7;
+  white-space: pre-wrap;         /* 줄바꿈 유지 */
+  display: none;                 /* ★ 기본은 숨김 */
+}
 
     /* 멤버 카드 레이아웃: 카드마다 높이 제각각 되도록 flex 사용 */
     .member-grid {
@@ -200,7 +203,6 @@
     /* ---------- お知らせ 렌더 ---------- */
 const newsList = document.getElementById("newsList");
 
-// newsItems가 정의돼 있고, 내용이 1개 이상 있을 때만 렌더
 if (typeof newsItems !== "undefined" && newsItems.length > 0) {
   newsItems.forEach(n => {
     const item = document.createElement("article");
@@ -212,11 +214,22 @@ if (typeof newsItems !== "undefined" && newsItems.length > 0) {
       <div class="news-body">${(n.body || "").replace(/\n/g, "<br>")}</div>
     `;
 
+    const bodyDiv = item.querySelector(".news-body");
+
+    // 제목(카드 전체) 클릭 시 본문 토글
+    item.addEventListener("click", () => {
+      if (bodyDiv.style.display === "none" || bodyDiv.style.display === "") {
+        bodyDiv.style.display = "block";   // 열기
+      } else {
+        bodyDiv.style.display = "none";    // 닫기
+      }
+    });
+
     newsList.appendChild(item);
   });
 } else {
   newsList.innerHTML = '<div class="news-body">現在お知らせはありません。</div>';
-    }
+                    }
 
     /* ---------- 멤버 카드 렌더 ---------- */
     const memberGrid = document.getElementById("memberGrid");
