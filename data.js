@@ -18,12 +18,17 @@ const groupData = {
 趣味: ぬいくるみを集めること`
   },
   {
-    name_jp: "ひよ",
-    name_en: "Hiyo",
-    color: "#ffffff",          // ← 흰색
-    role: "白担当",
-    photo: "",
-    profile: `test`
+    name_jp: "白石ひよ",
+    name_en: "Shiraishi Hiyo",
+    color: "#fdfdfd",          //하양
+    role: "スノーホワイト担当",
+    photo: "https://candypompominfo.github.io/candypompom/images/Shiraishi_Hiyo.jpg",
+    profile: `白石ひよ　(しらいし　ひよ)
+ニックネーム:　ひーちゃん
+担当カラー:　スノーホワイト ☃️
+誕生日:　２００３年１月１８日
+身長: 160cm
+趣味: ゲーム`
   },
   {
     name_jp: "村崎来羅",
