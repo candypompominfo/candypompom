@@ -42,39 +42,72 @@
       margin-top: 6px;
     }
 
-    /* 멤버 카드 */
-    ./* 멤버 카드 레이아웃: 카드마다 높이 제각각 되도록 flex 사용 */
-.member-grid {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-/* 한 줄에 두 장씩 들어가게 */
-.member-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  padding: 12px;
-  text-align: center;
-  cursor: pointer;
-  box-sizing: border-box;
-  flex: 0 0 calc(50% - 8px); /* 2열 */
+    /* お知らせ */
+    .news-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-  .member-photo {
-    width: 100%;
-    height: 180px;
-    background: #ffe8f5;
-    border-radius: 10px;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     color: #aaa;
-     font-size: 12px;
-     margin-bottom: 10px;
-     overflow: hidden;
+    .news-item {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      font-size: 13px;
+    }
+
+    .news-title {
+      font-weight: 700;
+      color: #ff4fa3;
+      font-size: 14px;
+    }
+
+    .news-meta {
+      margin-top: 2px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .news-body {
+      margin-top: 8px;
+      line-height: 1.7;
+      white-space: pre-wrap; /* 줄바꿈 그대로 표시 */
+    }
+
+    /* 멤버 카드 레이아웃: 카드마다 높이 제각각 되도록 flex 사용 */
+    .member-grid {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* 한 줄에 두 장씩 들어가게 */
+    .member-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      box-sizing: border-box;
+      flex: 0 0 calc(50% - 8px); /* 2열 */
+    }
+
+    .member-photo {
+      width: 100%;
+      height: 180px;
+      background: #ffe8f5;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #aaa;
+      font-size: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
     }
 
     .member-photo img {
@@ -141,6 +174,10 @@
     <h2>ABOUT</h2>
     <p class="desc"><span id="groupDesc"></span></p>
 
+    <!-- お知らせ 섹션 -->
+    <h2>お知らせ</h2>
+    <div class="news-list" id="newsList"></div>
+
     <h2>MEMBERS</h2>
     <div class="member-grid" id="memberGrid"></div>
 
@@ -151,6 +188,8 @@
 
   <!-- 데이터 파일 -->
   <script src="data.js"></script>
+  <!-- 긴 공지 전용 파일 -->
+  <script src="news.js"></script>
 
   <!-- 렌더링 스크립트 -->
   <script>
@@ -158,14 +197,30 @@
     document.getElementById("groupName").textContent = groupData.name;
     document.getElementById("groupDesc").textContent = groupData.description;
 
+    /* ---------- お知らせ 렌더 ---------- */
+    const newsList = document.getElementById("newsList");
+    if (window.newsItems && newsItems.length) {
+      newsItems.forEach(n => {
+        const item = document.createElement("article");
+        item.className = "news-item";
+
+        item.innerHTML = `
+          <div class="news-title">${n.title}</div>
+          <div class="news-meta">${n.date}</div>
+          <div class="news-body">${(n.body || "").replace(/\n/g, "<br>")}</div>
+        `;
+
+        newsList.appendChild(item);
+      });
+    } else {
+      newsList.innerHTML = '<div class="news-body">現在お知らせはありません。</div>';
+    }
+
+    /* ---------- 멤버 카드 렌더 ---------- */
     const memberGrid = document.getElementById("memberGrid");
+    let openedProfileDiv = null; // 한 번에 하나만 열기
 
-    // 한 번에 하나만 열리게 하고 싶으면 이거 사용
-    let openedProfileDiv = null;
-
-    // 멤버 카드 생성
     groupData.members.forEach((m) => {
-
       const card = document.createElement("div");
       card.className = "member-card";
 
@@ -184,15 +239,14 @@
       profileDiv.style.borderLeft = `4px solid ${m.color || "#ff8cc2"}`;
 
       card.addEventListener("click", () => {
-        // 빈 프로필이면 아무것도 안 함
-        if (!m.profile) return;
+        if (!m.profile) return; // 빈 프로필이면 무시
 
-        // 이미 열려 있던 프로필 닫기
+        // 다른 카드 열려 있으면 닫기
         if (openedProfileDiv && openedProfileDiv !== profileDiv) {
           openedProfileDiv.style.display = "none";
         }
 
-        // 이 카드 프로필 토글
+        // 이 카드 토글
         if (profileDiv.style.display === "none" || profileDiv.style.display === "") {
           profileDiv.style.display = "block";
           openedProfileDiv = profileDiv;
@@ -205,7 +259,7 @@
       memberGrid.appendChild(card);
     });
 
-    // SNS 목록
+    /* ---------- SNS 렌더 ---------- */
     const snsList = document.getElementById("snsList");
     groupData.sns.forEach(s => {
       const item = document.createElement("a");
