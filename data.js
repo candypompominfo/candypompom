@@ -56,6 +56,20 @@ const groupData = {
 身長: 161cm
 趣味: ランニング、お菓子作り`
   },
+{
+    name_jp: "羽黒はね",
+    name_en: "Haguro Hane",
+    color: "#001833",          //블루블랙
+    role: "ブルーベリーブルーブラック担当",
+    photo: "https://candypompominfo.github.io/candypompom/images/Haguro_Hane.jpg",
+    profile: `羽黒はね　(はぐれ　はね)
+ニックネーム:　ねーちゃん
+担当カラー:　ブルーベリーブルーブラック 🌀
+誕生日:　２００５年５月１１日
+身長: 164.1cm
+趣味: 人間観察、カラオケ、youtube
+脈拍: 121/78 mmHg`
+  },
 ],
   sns: [
     {
