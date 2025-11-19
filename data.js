@@ -59,7 +59,7 @@ const groupData = {
 {
     name_jp: "羽黒はね",
     name_en: "Haguro Hane",
-    color: "#001833",          //블루블랙
+    color: "#000080",          //블루블랙
     role: "ブルーベリーネイビー担当",
     photo: "https://candypompominfo.github.io/candypompom/images/Haguro_Hane.jpg",
     profile: `羽黒はね　(はぐれ　はね)
