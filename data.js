@@ -51,7 +51,7 @@ const groupData = {
     photo: "https://candypompominfo.github.io/candypompom/images/Pisutachio_Ren.jpg",
     profile: `翡翠達尾恋　(ぴすたちお　れん)
 ニックネーム:　れんちゃん
-担当カラー:　ピスタチオグリーン 🍏
+担当カラー:　ピスタチオグリーン 🦜
 誕生日:　２００３年３月８日
 身長: 161cm
 趣味: ランニング、お菓子作り`
