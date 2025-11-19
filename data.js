@@ -42,7 +42,20 @@ const groupData = {
 誕生日:　２００３年２月２０日
 身長: 167cm
 趣味: タイクーンゲーム`
-}
+},
+  {
+    name_jp: "翡翠達尾恋",
+    name_en: "Pisutachio Ren",
+    color: "#B4D896",          //하양
+    role: "ピスタチオグリーン担当",
+    photo: "https://candypompominfo.github.io/candypompom/images/Pisutachio_Ren.jpg",
+    profile: `翡翠達尾恋　(ぴすたちお　れん)
+ニックネーム:　れんちゃん
+担当カラー:　ピスタチオグリーン 🍏
+誕生日:　２００３年３月８日
+身長: 161cm
+趣味: ランニング`
+  },
 ],
   sns: [
     {
